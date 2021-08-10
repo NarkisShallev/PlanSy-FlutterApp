@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041406613310",
+    "project_id": "plansy-fbe01",
+    "storage_bucket": "plansy-fbe01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041406613310:android:bb965c506d0405d7f47e6f",
+        "android_client_info": {
+          "package_name": "com.narkisAndYael.plansy_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041406613310-89ktmtvdfs7vfqeuqe8d5sst29jkrjip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKLE0Y3GGfaiPlMCJw5ODBmpU9DJaVUV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041406613310-89ktmtvdfs7vfqeuqe8d5sst29jkrjip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
