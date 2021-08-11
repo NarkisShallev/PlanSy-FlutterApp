@@ -57,7 +57,7 @@ class _AttractionCardState extends State<AttractionCard> {
         buildDescription(),
       ],
     );
-  }
+  } 
 
   Container buildAttractionImage() {
     return Container(
