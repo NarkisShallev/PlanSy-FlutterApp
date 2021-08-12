@@ -40,8 +40,8 @@ class _WishListListState extends State<WishListList> {
     return RowAttractionCard(
       attraction: attraction,
       onTap: () => moveToAttractionDetailsScreen(index, attraction),
-      removeFromListCallback: () =>
-          Provider.of<Data>(context, listen: false).deleteAttractionFromWishList(attraction, context, trip.getID()),
+      removeFromListCallback: () => Provider.of<Data>(context, listen: false)
+          .deleteAttractionFromWishList(attraction, context, trip.getID()),
       isRemoveButtonVisible: true,
       isAdmin: false,
       isCart: false,
@@ -57,6 +57,7 @@ class _WishListListState extends State<WishListList> {
             isAdmin: false,
             isApproveOrRejectButtonVisible: false,
             attraction: attraction,
+            isFavorite: true,
           ),
         ),
       );

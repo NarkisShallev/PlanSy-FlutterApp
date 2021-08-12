@@ -63,6 +63,7 @@ class AdminRequestsList extends StatelessWidget {
             isApproveOrRejectButtonVisible: true,
             isAdmin: true,
             isAddToCartButtonVisible: false,
+            isFavorite: false,
           ),
         ),
       );

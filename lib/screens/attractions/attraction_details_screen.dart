@@ -30,6 +30,7 @@ class AttractionDetailsScreen extends StatefulWidget {
   final bool isAddToCartButtonVisible;
   final bool isAdmin;
   final bool isApproveOrRejectButtonVisible;
+  final bool isFavorite;
 
   const AttractionDetailsScreen({
     @required this.attractionIndex,
@@ -37,6 +38,7 @@ class AttractionDetailsScreen extends StatefulWidget {
     @required this.isAddToCartButtonVisible,
     @required this.isAdmin,
     @required this.isApproveOrRejectButtonVisible,
+    @required this.isFavorite,
   });
 
   @override
@@ -160,7 +162,7 @@ class _AttractionDetailsScreenState extends State<AttractionDetailsScreen> {
       );
 
   Visibility buildFavorite() => Visibility(
-        visible: !widget.isAdmin,
+        visible: widget.isFavorite,
         child: Expanded(
           child: IconButton(
             icon: Icon(Icons.favorite),
@@ -292,7 +294,7 @@ class _AttractionDetailsScreenState extends State<AttractionDetailsScreen> {
         name: widget.attraction.name,
         webSite: widget.attraction.webSite,
         rating: newRating,
-    priority: 0);
+        priority: 0);
     updated.setID(widget.attraction.getID());
     return updated;
   }
@@ -345,7 +347,8 @@ class _AttractionDetailsScreenState extends State<AttractionDetailsScreen> {
   }
 
   Visibility buildApproveOrRejectButton() {
-    Request req = Provider.of<Data>(context, listen: false).getRequestFromAttraction(widget.attraction);
+    Request req =
+        Provider.of<Data>(context, listen: false).getRequestFromAttraction(widget.attraction);
     return Visibility(
       visible: widget.isApproveOrRejectButtonVisible,
       child: ApproveOrRejectButton(request: req),

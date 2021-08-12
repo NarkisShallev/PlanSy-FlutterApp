@@ -48,6 +48,7 @@ class _AttractionListState extends State<AttractionList> {
             isAdmin: false,
             isApproveOrRejectButtonVisible: false,
             attraction: attraction,
+            isFavorite: true,
           ),
         ),
       ),

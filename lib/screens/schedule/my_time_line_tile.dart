@@ -4,6 +4,7 @@ import 'package:plansy_flutter_app/components/buttons/remove_circle_button.dart'
 import 'package:plansy_flutter_app/model/attraction.dart';
 import 'package:plansy_flutter_app/model/data.dart';
 import 'package:plansy_flutter_app/model/trip.dart';
+import 'package:plansy_flutter_app/screens/attractions/attraction_details_screen.dart';
 import 'package:plansy_flutter_app/screens/schedule/timeline_indicator.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
@@ -91,20 +92,42 @@ class _MyTimeLineTileState extends State<MyTimeLineTile> {
         ),
       );
 
-  Padding buildMyTimeLineTileContent() => Padding(
-        padding: EdgeInsets.only(
-            left: getProportionateScreenWidth(15),
-            top: getProportionateScreenWidth(10),
-            bottom: getProportionateScreenWidth(10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(widget.attractionName),
-            buildDurationText(),
-            SizedBox(height: getProportionateScreenHeight(4)),
-            buildAddressText(),
-            buildIsNeedToBuyTicketsText(),
-          ],
+  InkWell buildMyTimeLineTileContent() => InkWell(
+        onTap: () {
+          int attractionIndex = Provider.of<Data>(context, listen: false)
+              .findIndexOfAttraction(widget.attractionName);
+          if (widget.attractionName != "Free time") {
+            return Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AttractionDetailsScreen(
+                  attractionIndex: attractionIndex,
+                  isAddToCartButtonVisible: false,
+                  isAdmin: false,
+                  isApproveOrRejectButtonVisible: false,
+                  attraction:
+                      Provider.of<Data>(context, listen: false).attractions[attractionIndex],
+                  isFavorite: false,
+                ),
+              ),
+            );
+          }
+        },
+        child: Container(
+          padding: EdgeInsets.only(
+              left: getProportionateScreenWidth(15),
+              top: getProportionateScreenWidth(10),
+              bottom: getProportionateScreenWidth(10)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(widget.attractionName),
+              buildDurationText(),
+              SizedBox(height: getProportionateScreenHeight(4)),
+              buildAddressText(),
+              buildIsNeedToBuyTicketsText(),
+            ],
+          ),
         ),
       );
 

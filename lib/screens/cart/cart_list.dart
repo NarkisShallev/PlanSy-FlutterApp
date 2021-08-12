@@ -56,7 +56,7 @@ class _CartListState extends State<CartList> {
             isAddToCartButtonVisible: false,
             isAdmin: false,
             isApproveOrRejectButtonVisible: false,
-            attraction: attraction,
+            attraction: attraction, isFavorite: true,
           ),
         ),
       );

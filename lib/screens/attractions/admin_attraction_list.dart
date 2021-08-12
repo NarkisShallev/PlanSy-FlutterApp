@@ -58,7 +58,9 @@ class _AdminAttractionListState extends State<AdminAttractionList> {
           attractionIndex: index,
           isApproveOrRejectButtonVisible: false,
           isAddToCartButtonVisible: false,
-          isAdmin: true, attraction: attraction,
+          isAdmin: true,
+          attraction: attraction,
+          isFavorite: false,
         ),
       ),
     );
