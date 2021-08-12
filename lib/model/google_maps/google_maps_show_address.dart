@@ -2,11 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoder/geocoder.dart';
-import 'package:plansy_flutter_app/model/attraction.dart';
-import 'package:plansy_flutter_app/model/data.dart';
-import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
-import 'package:provider/provider.dart';
 
 class GoogleMapsShowAddress extends StatefulWidget {
   final String name;
@@ -32,14 +28,6 @@ class _GoogleMaps extends State<GoogleMapsShowAddress> {
   @override
   void initState() {
     super.initState();
-    // todo: delete ?
-    List<Attraction> attractions = Provider.of<Data>(context, listen: false).attractions;
-    setAttractionsFirstLocationCoordinatesFromAddresses(attractions);
-    double km = getDistanceInKm(Coordinates(19.018255973653343, 72.84793849278007),
-        Coordinates(19.8182559736533, 72.84793849278007));
-    TimeOfDay time = kmToTime(km);
-    print("hour: ${time.hour} minute: ${time.minute}");
-
     initCameraPosition();
   }
 

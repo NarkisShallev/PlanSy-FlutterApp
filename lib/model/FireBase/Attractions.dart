@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
-import 'package:plansy_flutter_app/model/FireBase/FireBaseSingelton.dart';
 import 'package:plansy_flutter_app/model/algorithm/algorithm_utilities.dart';
-import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
 import 'package:provider/provider.dart';
 
 import '../attraction.dart';

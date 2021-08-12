@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:plansy_flutter_app/model/FireBase/FireBaseSingelton.dart';
 import 'package:provider/provider.dart';
 import 'package:plansy_flutter_app/model/algorithm/algorithm_utilities.dart';
-import 'package:plansy_flutter_app/model/FireBase/Schedules.dart' as Schedule;
 import '../data.dart';
 import '../trip.dart';
 

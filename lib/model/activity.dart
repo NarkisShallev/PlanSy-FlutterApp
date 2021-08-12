@@ -16,7 +16,7 @@ class Activity {
     @required this.attractionName,
     @required this.imageSrc,
     @required this.address,
-    @required this.latLngLocation,
+    this.latLngLocation,
     @required this.isNeedToBuyTicketsInAdvance,
     @required this.duration,
   });

@@ -2,9 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plansy_flutter_app/components/appBar/my_appBar.dart';
-import 'package:plansy_flutter_app/model/attraction.dart';
 import 'package:plansy_flutter_app/model/data.dart';
-import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
 import 'package:plansy_flutter_app/screens/home/home_drawer.dart';
 import 'package:plansy_flutter_app/screens/trips/trip_list.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
@@ -28,11 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getCurrentUser();
     partOfDay = convertHourToPartOfDay(DateTime.now().hour);
-  }
-
-  void waitToLatLng() async {
-    List<Attraction> l = Provider.of<Data>(context, listen: false).attractions;
-    await setAttractionsFirstLocationCoordinatesFromAddresses(l);
   }
 
   void getCurrentUser() {
@@ -86,20 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  //todo: remove requests that rejected
-  // @mustCallSuper
-  // void deactivate() {
-  //   super.deactivate();
-  //   List<Attraction> data = Provider.of<Data>(context, listen: false).attractions;
-  //   FireBaseSingleton().uploadAttractions(data);
-  //   //FireBaseSingleton().uploadTrips(context);;
-  //   //FireBaseSingleton().uploadNotificationToFireBase(notification);
-  //   //List<Activity> activities = Provider.of<Data>(context, listen: false).activities;
-  //   //if(activities.isNotEmpty){
-  //   //  FireBaseSingleton().uploadScheduleToFireBase('2', activities);
-  //   //}
-  // }
 
   AppBar buildAppBar(BuildContext context) => myAppBar(
         context: context,

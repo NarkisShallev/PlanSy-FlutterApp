@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
 import 'package:provider/provider.dart';
 import 'package:plansy_flutter_app/model/FireBase/Attractions.dart' as Attractions;
 import '../attraction.dart';

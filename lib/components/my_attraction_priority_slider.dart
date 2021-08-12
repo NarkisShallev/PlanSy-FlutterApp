@@ -41,33 +41,34 @@ class _MyAttractionPrioritySliderState extends State<MyAttractionPrioritySlider>
 
     setState(() => _currentSliderValue = value);
 
-    //todo: add to changes
-    // changes["Priority"] = value;
+    changes["Priority"] = value;
     createUpdatedNumOfReviewsAndRatingAttraction(value.toInt());
     FireBaseSingleton().changeAttraction(widget.attraction.getID(), changes);
   }
 
   Attraction createUpdatedNumOfReviewsAndRatingAttraction(int newPriority) {
     Attraction updated = Attraction(
-        status: 2,
-        priority: newPriority,
-        category: widget.attraction.category,
-        address: widget.attraction.address,
-        openingTime: widget.attraction.openingTime,
-        closingTime: widget.attraction.closingTime,
-        numOfReviews: widget.attraction.numOfReviews,
-        description: widget.attraction.description,
-        country: widget.attraction.country,
-        duration: widget.attraction.duration,
-        isNeedToBuyTickets: widget.attraction.isNeedToBuyTickets,
-        suitableFor: widget.attraction.suitableFor,
-        suitableSeason: widget.attraction.suitableSeason,
-        recommendations: widget.attraction.recommendations,
-        pricing: widget.attraction.pricing,
-        imageSrc: widget.attraction.imageSrc,
-        name: widget.attraction.name,
-        webSite: widget.attraction.webSite,
-        rating: widget.attraction.rating);
+      status: 2,
+      priority: newPriority,
+      category: widget.attraction.category,
+      address: widget.attraction.address,
+      openingTime: widget.attraction.openingTime,
+      closingTime: widget.attraction.closingTime,
+      numOfReviews: widget.attraction.numOfReviews,
+      description: widget.attraction.description,
+      country: widget.attraction.country,
+      duration: widget.attraction.duration,
+      isNeedToBuyTickets: widget.attraction.isNeedToBuyTickets,
+      suitableFor: widget.attraction.suitableFor,
+      suitableSeason: widget.attraction.suitableSeason,
+      recommendations: widget.attraction.recommendations,
+      pricing: widget.attraction.pricing,
+      imageSrc: widget.attraction.imageSrc,
+      name: widget.attraction.name,
+      webSite: widget.attraction.webSite,
+      rating: widget.attraction.rating,
+      latLngLocation: widget.attraction.latLngLocation,
+    );
     updated.setID(widget.attraction.getID());
     return updated;
   }

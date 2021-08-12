@@ -18,7 +18,6 @@ class PrimaryBottomNavigationBar extends StatelessWidget {
     this.isBrowse,
     @required this.isWishList,
     @required this.isCart,
-    //TODO -change to @req
     this.tripIndex,
   });
 
@@ -32,9 +31,8 @@ class PrimaryBottomNavigationBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0)
-        ),
+            topLeft: Radius.circular(getProportionateScreenWidth(20)),
+            topRight: Radius.circular(getProportionateScreenWidth(20))),
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -7),

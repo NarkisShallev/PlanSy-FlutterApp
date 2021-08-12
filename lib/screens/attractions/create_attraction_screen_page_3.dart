@@ -11,7 +11,6 @@ import 'package:plansy_flutter_app/components/fields/input/build_suitable_for_fi
 import 'package:plansy_flutter_app/components/fields/input/build_suitable_season_field.dart';
 import 'package:plansy_flutter_app/model/attraction.dart';
 import 'package:plansy_flutter_app/model/data.dart';
-import 'package:plansy_flutter_app/model/request.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 

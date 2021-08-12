@@ -121,7 +121,6 @@ List<ScheduledAttraction> findValidAttractions(
     TimeOfDay newTime = timeNow
         .add(hour: timeToTravel.hour, minute: timeToTravel.minute)
         .add(hour: attr.duration.hour, minute: attr.duration.minute);
-    //TODO: think of something better.
     if (timeNow >= TimeOfDay(hour: 12, minute: 0) &&
         TimeOfDay(hour: 12, minute: 0) >= newTime) {
       continue;

@@ -10,7 +10,7 @@ import 'package:plansy_flutter_app/utilities/constants.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
 
 class CreateTripScreenPage1 extends StatefulWidget {
-  BuildContext context;
+  final BuildContext context;
 
   CreateTripScreenPage1({@required this.context});
   @override

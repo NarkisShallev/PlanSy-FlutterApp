@@ -2,31 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geocoder/model.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:plansy_flutter_app/model/attraction.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
-
-//todo: delete ? Each attraction should already have a coordinate after creation
-Future<void> setAttractionsFirstLocationCoordinatesFromAddresses(
-    List<Attraction> attractions) async {
-  try {
-    for (Attraction attraction in attractions) {
-      List<Address> location = await Geocoder.local.findAddressesFromQuery(attraction.address);
-      Address first = location.first;
-      attraction.setLatLngLocation(first.coordinates);
-      print("${attraction.name}---${first.featureName} : ${first.coordinates}");
-    }
-  } catch (e) {
-    return null;
-  }
-}
-
-//todo: delete ?
-void setAddressFromCoordinates(Coordinates coordinates, Attraction attraction) async {
-  List<Address> location = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-  Address first = location.first;
-  //attraction.setAddress();
-  print("${attraction.name}---${first.featureName} : ${first.addressLine}");
-}
 
 Future<Address> findFirstAddressFromAddress(String address) async {
   try {
