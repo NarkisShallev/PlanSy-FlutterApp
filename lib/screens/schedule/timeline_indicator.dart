@@ -11,7 +11,7 @@ class TimelineIndicator extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: imageSrc == "free_time.png"
+          image: imageSrc == "free_time.png" || imageSrc =="default_image.png"
               ? AssetImage("images/" + imageSrc)
               : NetworkImage(imageSrc),
           fit: BoxFit.cover,
