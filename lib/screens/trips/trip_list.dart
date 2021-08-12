@@ -5,6 +5,10 @@ import 'package:plansy_flutter_app/model/data.dart';
 import 'package:provider/provider.dart';
 
 class TripList extends StatefulWidget {
+  final Function changeShowSpinner;
+
+  const TripList({this.changeShowSpinner});
+
   @override
   _TripListState createState() => _TripListState();
 }
@@ -37,6 +41,7 @@ class _TripListState extends State<TripList> {
     return TripCard(
       tripIndex: index,
       removeFromListCallback: () => tripData.deleteTrip(trip, context),
+      changeShowSpinner: widget.changeShowSpinner,
     );
   }
 }
