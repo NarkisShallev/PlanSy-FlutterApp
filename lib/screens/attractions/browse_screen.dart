@@ -6,6 +6,8 @@ import 'package:plansy_flutter_app/components/primary_bottom_navigation_bar.dart
 import 'package:plansy_flutter_app/components/fields/search_field.dart';
 import 'package:plansy_flutter_app/model/attraction.dart';
 import 'package:plansy_flutter_app/model/data.dart';
+import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
+import 'package:plansy_flutter_app/model/trip.dart';
 import 'package:plansy_flutter_app/screens/attractions/admin_attraction_list.dart';
 import 'package:plansy_flutter_app/screens/attractions/attraction_list.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
@@ -23,11 +25,26 @@ class BrowseScreen extends StatefulWidget {
 
 class _BrowseScreenState extends State<BrowseScreen> {
   List<Attraction> filteredAttrs;
+  Trip trip;
+  String tripCountryInGoogleMaps;
 
   void initState() {
     super.initState();
-    setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
+    trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
+    // setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
+    filterByTripCountry();
   }
+
+  void filterByTripCountry() async {
+    await convertToGoogleMapsCountry();
+    setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
+        .attractions
+        .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
+        .toList());
+  }
+
+  Future<void> convertToGoogleMapsCountry() async =>
+      tripCountryInGoogleMaps = await findCountryFromAddress(trip.country);
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +112,13 @@ class _BrowseScreenState extends State<BrowseScreen> {
       name: 'Search',
       icon: Icons.search,
       hintText: "Search Here",
-      onChanged: ((value) => filter(value)),
+      onChanged: ((value) => filterByName(value)),
     );
   }
 
-  void filter(value) => setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
-      .attractions
-      .where((attr) => attr.name.toLowerCase().contains(value.toString().toLowerCase()))
-      .toList());
+  void filterByName(value) =>
+      setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
+          .attractions
+          .where((attr) => attr.name.toLowerCase().contains(value.toString().toLowerCase()))
+          .toList());
 }

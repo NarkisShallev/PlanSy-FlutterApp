@@ -18,6 +18,15 @@ Future<Address> findFirstAddressFromCoordinates(Coordinates coordinates) async {
   return location.first;
 }
 
+Future<String> findCountryFromAddress(String address) async {
+  try {
+    List<Address> location = await Geocoder.local.findAddressesFromQuery(address);
+    return location.first.countryName;
+  } catch (e) {
+    return null;
+  }
+}
+
 double getDistanceInKm(Coordinates point1, Coordinates point2) {
   double distanceInMeters = Geolocator.distanceBetween(
       point1.latitude, point1.longitude, point2.latitude, point2.longitude);

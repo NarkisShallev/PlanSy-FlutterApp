@@ -7,6 +7,7 @@ import 'package:plansy_flutter_app/components/fields/input/build_attraction_Imag
 import 'package:plansy_flutter_app/components/fields/input/build_attraction_name_text_form_field.dart';
 import 'package:plansy_flutter_app/components/fields/input/build_description_text_form_field.dart';
 import 'package:plansy_flutter_app/components/fields/input/build_address_text_form_field.dart';
+import 'package:plansy_flutter_app/model/google_maps/google_maps_utilities.dart';
 import 'package:plansy_flutter_app/screens/attractions/create_attraction_screen_page_2.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
@@ -109,7 +110,10 @@ class _CreateAttractionScreen1State extends State<CreateAttractionScreen1> {
           BuildAddressTextFormField(
             onSaved: (newValue) => address = newValue,
             setLatLngLocation: (newValue) => setState(() => latLngLocation = newValue),
-            setAddress: (newValue) => setState(() => address = newValue),
+            setAddress: (newValue) async {
+              setState(() => address = newValue);
+              country = await findCountryFromAddress(address);
+            },
             isEnabled: true,
             labelText: "* Address",
           ),

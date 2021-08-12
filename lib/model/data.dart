@@ -28,7 +28,7 @@ class Data extends ChangeNotifier {
   // to-do list
   List<String> _todoListIds = [];
 
-  void addTodoListId(String id){
+  void addTodoListId(String id) {
     _todoListIds.insert(_todoListIds.length, id);
   }
 
@@ -36,8 +36,8 @@ class Data extends ChangeNotifier {
 
   List<List<Task>> _tasks = [];
 
-  void createTasksList(int size){
-    for (int i = 0; i < size; i++){
+  void createTasksList(int size) {
+    for (int i = 0; i < size; i++) {
       _tasks.add([]);
     }
   }
@@ -76,9 +76,9 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
-  Map<String, String> tasksToMap(List<Task> tasks){
+  Map<String, String> tasksToMap(List<Task> tasks) {
     Map<String, String> ret = {};
-    for(Task task in tasks){
+    for (Task task in tasks) {
       ret[task.name] = task.isDone ? "done" : "not done";
     }
     return ret;
@@ -131,12 +131,12 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addAttractionToFireBase(Attraction attraction){
+  void addAttractionToFireBase(Attraction attraction) {
     attraction.setStatus(0);
     FireBaseSingleton().addAttraction(attraction);
   }
 
-  void deleteAttractionFromFireBase(Attraction attraction){
+  void deleteAttractionFromFireBase(Attraction attraction) {
     FireBaseSingleton().removeAttractionFromFireBase(attraction.getID());
   }
 
@@ -157,46 +157,6 @@ class Data extends ChangeNotifier {
 
   // trips list
   List<Trip> _trips = [];
-  /*
-    Trip(
-        title: "My trip to London",
-        country: 'England',
-        city: 'London',
-        firstDate: '01/10/2021',
-        lastDate: '01/14/2021',
-        state: '',
-        qualityOrAmount: 'quality',
-        numOfHoursPerDay: TimeOfDay(hour: 2, minute: 0),
-        startingAddress: 'startingLocation',
-        startingHour: TimeOfDay(hour: 7, minute: 0),
-        latLngLocation: Coordinates(51.5031864,-0.11951919999999999),
-        isNew: true),
-    Trip(
-        title: "My trip to Paris",
-        country: 'France',
-        city: 'Paris',
-        firstDate: '01/10/2021',
-        lastDate: '01/15/2021',
-        state: '',
-        qualityOrAmount: 'amount',
-        numOfHoursPerDay: TimeOfDay(hour: 7, minute: 0),
-        startingAddress: 'startingLocation',
-        startingHour: TimeOfDay(hour: 5, minute: 0),
-        isNew: false),
-    Trip(
-      title: "My trip to Israel",
-      country: 'Israel',
-      city: 'Jerusalem',
-      firstDate: '01/10/2021',
-      lastDate: '01/16/2021',
-      state: '',
-      qualityOrAmount: 'amount',
-      numOfHoursPerDay: TimeOfDay(hour: 7, minute: 0),
-      startingAddress: 'startingLocation',
-      startingHour: TimeOfDay(hour: 5, minute: 0),
-      isNew: false,
-    ),
-  ];*/
 
   int _tripIndex;
 
@@ -222,16 +182,16 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTripWithoutUpdateFireBase(Trip trip){
+  void deleteTripWithoutUpdateFireBase(Trip trip) {
     trips.remove(trip);
     notifyListeners();
   }
 
-  void addTripAndUpdateTheFireBase(BuildContext context, Trip newTrip, String email){
+  void addTripAndUpdateTheFireBase(BuildContext context, Trip newTrip, String email) {
     FireBaseSingleton().uploadNewTrip(context, newTrip, email, _trips);
   }
 
-  void addTripWithoutUpdateTheFireBase(Trip newTrip){
+  void addTripWithoutUpdateTheFireBase(Trip newTrip) {
     trips.add(newTrip);
     notifyListeners();
   }
@@ -243,84 +203,12 @@ class Data extends ChangeNotifier {
     deleteTripWithoutUpdateFireBase(trips[index]);
     trips.insert(index, updatedTrip);
   }
+
   //************************************************************************
 
   // Requests list
   // status: 0 - exist, 1 - new, 2 - updated
   List<Request> _requests = [];
-
-  /*[
-    Attraction(
-      status: 2,
-      name: "London Eye",
-      imageSrc:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/London_Eye_-_TQ04_26.jpg/220px-London_Eye_-_TQ04_26.jpg",
-      category: "Observationl",
-      location: "location",
-      country: "England",
-      city: "London",
-      description: "bla bla bla bla bla bla bla bla bla bla bla bla",
-      openingTime: TimeOfDay(hour: 7, minute: 0),
-      closingTime: TimeOfDay(hour: 16, minute: 0),
-      rushHours: '14:00-15:00',
-      webSite: 'www.londoneye.com',
-      pricing: '20',
-      isNeedToBuyTickets: 'Yes',
-      suitableFor: 'children, couples',
-      recommendations:
-          'Yael: wow, so beautiful.\n----------\nNarkis: I really enjoyed my time there',
-      numOfReviews: '521',
-      rating: '4.5',
-      suitableSeason: 'all',
-      duration: TimeOfDay(hour: 1, minute: 0),
-    ),
-    Attraction(
-      status: 0,
-      name: "Tower Bridge",
-      imageSrc: "https://cdn.getyourguide.com/img/location/5b8e2640b4d58.jpeg/88.jpg",
-      category: "Bridges",
-      location: "location",
-      country: "England",
-      city: "London",
-      description: "bla bla bla bla bla bla bla bla bla bla bla bla",
-      openingTime: TimeOfDay(hour: 7, minute: 0),
-      closingTime: TimeOfDay(hour: 16, minute: 0),
-      rushHours: '14:00-15:00',
-      webSite: 'www.londontowerbridge.com',
-      pricing: '20',
-      isNeedToBuyTickets: 'No',
-      suitableFor: 'children, couples',
-      recommendations:
-          'Yael: wow, so beautiful.\n----------\nNarkis: I really enjoyed my time there',
-      numOfReviews: '20',
-      rating: '3.5',
-      suitableSeason: 'all',
-      duration: TimeOfDay(hour: 1, minute: 0),
-    ),
-    Attraction(
-      status: 0,
-      name: "Tower of London",
-      imageSrc: "https://cdn.getyourguide.com/img/location/5ca348c3482ea.jpeg/88.jpg",
-      category: "Historical sites",
-      location: "location",
-      country: "England",
-      city: "London",
-      description: "bla bla bla bla bla bla bla bla bla bla bla bla",
-      openingTime: TimeOfDay(hour: 7, minute: 0),
-      closingTime: TimeOfDay(hour: 16, minute: 0),
-      rushHours: '14:00-15:00',
-      webSite: 'www.londontowerof.com',
-      pricing: '20',
-      isNeedToBuyTickets: 'Yes',
-      suitableFor: 'children, couples',
-      recommendations:
-          'Yael: wow, so beautiful.\n----------\nNarkis: I really enjoyed my time there',
-      numOfReviews: '600',
-      rating: '5',
-      suitableSeason: 'all',
-      duration: TimeOfDay(hour: 1, minute: 0),
-    ),
-  ];*/
 
   List<Request> get requests => _requests;
 
@@ -350,7 +238,9 @@ class Data extends ChangeNotifier {
 
   void addRequestToFireBase(Attraction updatedAttraction, String originalID) async {
     String attrId = await FireBaseSingleton().addAttraction(updatedAttraction);
-    Request request = Request(updatedAttraction: updatedAttraction, sender: user.email,
+    Request request = Request(
+        updatedAttraction: updatedAttraction,
+        sender: user.email,
         originalAttractionIdInFireBase: originalID);
     FireBaseSingleton().uploadRequestToFireBase(request);
   }
@@ -468,13 +358,7 @@ class Data extends ChangeNotifier {
   //************************************************************************
 
   //notifications list
-  List<MyNotification> _notifications = [
-    // MyNotification(
-    //     title:
-    //         "The 'London eye' attraction you proposed to add to the database has been approved by the admin",
-    //     sender: "user",
-    //     now: DateTime.now().toString().substring(0, 16)),
-  ];
+  List<MyNotification> _notifications = [];
 
   List<MyNotification> get notifications => _notifications;
 
@@ -532,33 +416,10 @@ class Data extends ChangeNotifier {
   // route list
   List<List<Activity>> _activities = [];
 
-  /*[
-    Activity(
-      hour: '16:00',
-      attractionName: 'London Eye',
-      description: 'bla bla bla bla bla bla bla bla bla bla bla bla',
-    ),
-    Activity(
-      hour: '18:00',
-      attractionName: 'Tower Bridge',
-      description: 'bla bla bla bla bla bla bla bla bla bla bla bla',
-    ),
-    Activity(
-      hour: '20:00',
-      attractionName: 'Tower of London',
-      description: 'bla bla bla bla bla bla bla bla bla bla bla bla',
-    ),
-    Activity(
-      hour: '22:00',
-      attractionName: 'Hyde Park',
-      description: 'bla bla bla bla bla bla bla bla bla bla bla bla',
-    ),
-  ];*/
-
   List<List<Activity>> get activities => _activities;
 
   int getDayActivitiesCount(int dayNum) {
-    if (_activities.length > dayNum){
+    if (_activities.length > dayNum) {
       return _activities[dayNum].length;
     } else {
       return -1;
@@ -568,7 +429,7 @@ class Data extends ChangeNotifier {
   // should call once !
   List<List<Activity>> resetAllDaysActivitiesList(int size) {
     _activities = [];
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++) {
       _activities.add([]);
     }
     return _activities;
@@ -596,7 +457,7 @@ class Data extends ChangeNotifier {
   }
 
   void changeActivityInSpecificIndex(int numRoute, int index, Activity newActivity) {
-    deleteActivityFromRoute(numRoute,activities[numRoute][index]);
+    deleteActivityFromRoute(numRoute, activities[numRoute][index]);
     activities[numRoute].insert(index, newActivity);
   }
 
@@ -614,9 +475,9 @@ class Data extends ChangeNotifier {
 
   List<List<Activity>> get freeTimes => _freeTimes;
 
-  List<Activity> sortFreeTimes(int dayNum){
+  List<Activity> sortFreeTimes(int dayNum) {
     List<Activity> freeTimes = _freeTimes[dayNum];
-    freeTimes.sort((Activity a, Activity b){
+    freeTimes.sort((Activity a, Activity b) {
       TimeOfDay aHour = TimeOfDayExtension.timeFromStr(a.hour);
       TimeOfDay bHour = TimeOfDayExtension.timeFromStr(b.hour);
       return aHour.hour.compareTo(bHour.hour);
@@ -627,7 +488,7 @@ class Data extends ChangeNotifier {
   // should call once !
   List<List<Activity>> createFreeTimes(int size) {
     _freeTimes = [];
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++) {
       _freeTimes.add([]);
     }
     return _freeTimes;
@@ -643,7 +504,7 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resetData(){
+  void resetData() {
     _currentUser = null;
     _tripIndex = 0;
     _attractions = [];
