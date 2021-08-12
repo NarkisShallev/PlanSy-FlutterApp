@@ -32,15 +32,15 @@ class _BrowseScreenState extends State<BrowseScreen> {
   }
 
   void filterByTripCountry() async {
-    if (widget.isAdmin) {
+    // if (widget.isAdmin) {
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
-    } else {
-      await convertToGoogleMapsCountry();
-      setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
-          .attractions
-          .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
-          .toList());
-    }
+    // } else {
+    //   await convertToGoogleMapsCountry();
+    //   setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
+    //       .attractions
+    //       .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
+    //       .toList());
+    // }
   }
 
   Future<void> convertToGoogleMapsCountry() async {

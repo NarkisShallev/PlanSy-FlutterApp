@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:plansy_flutter_app/components/appBar/my_appBar.dart';
 import 'package:plansy_flutter_app/model/data.dart';
 import 'package:plansy_flutter_app/screens/home/home_drawer.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   User _loggedInUser;
   String partOfDay = '';
   bool isEditEnabled;
+  bool _showSpinner = false;
 
   @mustCallSuper
   void initState() {
@@ -61,24 +63,29 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBodyBehindAppBar: true,
       appBar: buildAppBar(context),
       drawer: HomeDrawer(auth: widget._auth, email: _loggedInUser.email),
-      body: Stack(
-        children: [
-          buildPartOfDayImage(),
-          SingleChildScrollView(
-            child: SafeArea(
-              child: SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-                  child: buildHomeScreenContent(),
+      body: ModalProgressHUD(
+        inAsyncCall: _showSpinner,
+        child: Stack(
+          children: [
+            buildPartOfDayImage(),
+            SingleChildScrollView(
+              child: SafeArea(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+                    child: buildHomeScreenContent(),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
+
+  void changeShowSpinner(bool value) => setState(() => _showSpinner = value);
 
   AppBar buildAppBar(BuildContext context) => myAppBar(
         context: context,
@@ -104,7 +111,10 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: SizeConfig.screenHeight * 0.4),
           buildTripsSectionTitle(),
           Container(
-              height: SizeConfig.screenHeight * 0.3, width: double.infinity, child: TripList()),
+            height: SizeConfig.screenHeight * 0.3,
+            width: double.infinity,
+            child: TripList(changeShowSpinner: changeShowSpinner),
+          ),
         ],
       );
 

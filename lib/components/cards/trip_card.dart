@@ -13,14 +13,16 @@ import 'package:provider/provider.dart';
 class TripCard extends StatefulWidget {
   final int tripIndex;
   final Function removeFromListCallback;
+  final Function changeShowSpinner;
 
-  const TripCard({this.tripIndex, this.removeFromListCallback});
+  const TripCard({this.tripIndex, this.removeFromListCallback, this.changeShowSpinner});
 
   @override
   _TripCardState createState() => _TripCardState();
 }
 
 class _TripCardState extends State<TripCard> {
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -121,6 +123,7 @@ class _TripCardState extends State<TripCard> {
     return DropdownMenuItem(
       child: TextButton(
         onPressed: () {
+          widget.changeShowSpinner(true);
           Provider.of<Data>(context, listen: false).setTripIndex(widget.tripIndex);
           Navigator.push(
             context,
@@ -128,6 +131,7 @@ class _TripCardState extends State<TripCard> {
               builder: (context) => TripDetailsScreen(),
             ),
           );
+          widget.changeShowSpinner(false);
         },
         child: Text("Trip's details", style: TextStyle(color: kPrimaryColor)),
       ),
@@ -139,8 +143,10 @@ class _TripCardState extends State<TripCard> {
     return DropdownMenuItem(
       child: TextButton(
           onPressed: () {
+            widget.changeShowSpinner(true);
             Provider.of<Data>(context, listen: false).setTripIndex(widget.tripIndex);
             Navigator.push(context, MaterialPageRoute(builder: (context) => TasksScreen()));
+            widget.changeShowSpinner(false);
           },
           child: Text("TODO List", style: TextStyle(color: kPrimaryColor))),
       value: 2,
@@ -151,6 +157,7 @@ class _TripCardState extends State<TripCard> {
     return DropdownMenuItem(
       child: TextButton(
           onPressed: () async {
+            widget.changeShowSpinner(true);
             // set trip index and schedule.
             Provider.of<Data>(context, listen: false).setTripIndex(widget.tripIndex);
             Trip trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
@@ -168,6 +175,8 @@ class _TripCardState extends State<TripCard> {
                 builder: (context) => ScheduleScreen(),
               ),
             );
+
+            widget.changeShowSpinner(false);
           },
           child: Text("Schedule", style: TextStyle(color: kPrimaryColor))),
       value: 3,
