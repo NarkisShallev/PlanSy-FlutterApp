@@ -222,6 +222,7 @@ class _CreateAttractionScreen3State extends State<CreateAttractionScreen3> {
       suitableSeason: suitableSeason,
       duration: duration,
       latLngLocation: widget.latLngLocation,
+      priority: 0
     );
     Provider.of<Data>(context, listen: false).addAttraction(newAttraction);
     for (int i = 0; i < 3; i++) {

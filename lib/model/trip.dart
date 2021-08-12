@@ -30,15 +30,15 @@ class Trip {
     @required this.city,
     @required this.firstDate,
     @required this.lastDate,
-    @required this.numDays,
+    this.numDays,
     @required this.numOfHoursPerDay,
     @required this.startingAddress,
     @required this.startingHour,
     @required this.qualityOrAmount,
     @required this.latLngLocation,
-    @required this.isNew=false,
-    @required this.scheduleIds,
-    @required this.todolistId
+    this.isNew=false,
+    this.scheduleIds,
+    this.todolistId
   });
 
   void setID(int id) {

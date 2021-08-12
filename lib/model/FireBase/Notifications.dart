@@ -21,7 +21,7 @@ Future<void> loadNotificationFromFireBase(FirebaseFirestore firebaseFirestore,
     String sender = doc.data()["sender"];
     String title = doc.data()["title"];
     MyNotification newNotification =
-    MyNotification(isNew: isNew, now: now, sender: sender, title: title);
+    MyNotification(isNew: isNew, now: now, sender: sender, title: title, receiver: null);
     Provider.of<Data>(context, listen: false).addNotification(
         newNotification);
   }

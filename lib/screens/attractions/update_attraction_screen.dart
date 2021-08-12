@@ -354,7 +354,7 @@ class _UpdateAttractionScreenState extends State<UpdateAttractionScreen> {
 
   Visibility buildApproveOrRejectButton() {
     Request req = Request(
-        updatedAttraction: attraction, sender: Provider.of<Data>(context, listen: false).user.email);
+        updatedAttraction: attraction, sender: Provider.of<Data>(context, listen: false).user.email, originalAttractionIdInFireBase: null);
     return Visibility(
       visible: widget.isApproveOrRejectButtonVisible,
       child: ApproveOrRejectButton(request: req, changes: changes),

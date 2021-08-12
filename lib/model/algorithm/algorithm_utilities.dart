@@ -72,8 +72,7 @@ List<ScheduledAttraction> findValidFirstAttractions(
       country: "country",
       description: "description",
       openingTime: TimeOfDay(hour: startTime.hour, minute: startTime.minute),
-      // TODO: if there is a limit on the travel time - or endTime of travel
-      closingTime: TimeOfDay(hour: 0, minute: 0),
+      closingTime: TimeOfDay(hour: endOfDayTime.hour, minute: endOfDayTime.minute),
       webSite: "webSite",
       pricing: "payment",
       isNeedToBuyTickets: "isNeedToBuyTicketsInAdvance",
@@ -82,8 +81,10 @@ List<ScheduledAttraction> findValidFirstAttractions(
       numOfReviews: "numOfReviews",
       rating: "rating",
       suitableSeason: "suitableWeather",
-      duration: TimeOfDay(hour: 0, minute: 0));
-  demo.setLatLngLocation(location);
+      duration: TimeOfDay(hour: 0, minute: 0),
+  latLngLocation: location,
+  priority: 0);
+  //demo.setLatLngLocation(location);
   return findValidAttractions(startTime, endOfDayTime, demo, nextAttractions);
 }
 
@@ -225,6 +226,7 @@ Activity findFreeTimeActivity(TimeOfDay startFreeTime, BuildContext context, int
       return activity;
     }
   }
+  return null;
 }
 
 
