@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:plansy_flutter_app/model/data.dart';
 import 'package:plansy_flutter_app/screens/login/sign_in_screen.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
+import 'package:provider/provider.dart';
 
 class HomeDrawer extends StatefulWidget {
   final FirebaseAuth auth;
@@ -60,6 +62,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   void _logOut() {
+    Provider.of<Data>(context, listen: false).resetData();
     Navigator.pop(context);
     widget.auth.signOut();
     Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));

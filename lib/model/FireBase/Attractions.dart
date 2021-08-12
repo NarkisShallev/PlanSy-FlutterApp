@@ -74,7 +74,7 @@ Future<List<Attraction>> loadAttractions(FirebaseFirestore firebaseFirestore,
   List<Attraction> attractionsList = [];
   var firebase = await firebaseFirestore.collection('Attractions').get();
   for (var attr in firebase.docs) {
-    if (attr.id.compareTo('id') == 0 || attr.data()['Status'] == 2) {
+    if (attr.id.compareTo('id') == 0 || attr.data()['Status'] != 0) {
       continue;
     }
     // extract all fields.

@@ -57,7 +57,7 @@ class _AttractionCardState extends State<AttractionCard> {
         buildDescription(),
       ],
     );
-  } 
+  }
 
   Container buildAttractionImage() {
     return Container(
@@ -161,7 +161,7 @@ class _AttractionCardState extends State<AttractionCard> {
         top: getProportionateScreenWidth(-5),
         child: Row(
           children: [
-            RemoveCircleButton(removeFromListCallback: widget.removeFromListCallback),
+            RemoveCircleButton(removeFromListCallback: widget.removeFromListCallback, attraction: widget.attraction,),
           ],
         ),
       ),

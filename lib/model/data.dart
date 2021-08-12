@@ -290,6 +290,15 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addAttractionToFireBase(Attraction attraction){
+    attraction.setStatus(0);
+    FireBaseSingleton().addAttraction(attraction);
+  }
+
+  void deleteAttractionFromFireBase(Attraction attraction){
+    FireBaseSingleton().removeAttractionFromFireBase(attraction.getID());
+  }
+
   void ApproveUpdateAttractionInFireBase(Request request, Attraction original) {
     Map<String, dynamic> changes = original.checkForUpdates(request.updatedAttraction);
     if (changes.isNotEmpty) {
@@ -791,5 +800,20 @@ class Data extends ChangeNotifier {
   void addFreeTime(int numRoute, Activity newActivity) {
     _freeTimes[numRoute].add(newActivity);
     notifyListeners();
+  }
+
+  void resetData(){
+    _currentUser = null;
+    _tripIndex = 0;
+    _attractions = [];
+    _cart = [];
+    _wishList = [];
+    _trips = [];
+    _todoListIds = [];
+    _tasks = [];
+    _freeTimes = [];
+    _activities = [];
+    _requests = [];
+    _notifications = [];
   }
 }

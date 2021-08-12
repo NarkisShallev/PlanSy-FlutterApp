@@ -39,6 +39,7 @@ class ApproveOrRejectButton extends StatelessWidget {
           Provider.of<Data>(context, listen: false)
               .ApproveUpdateAttractionInFireBase(request, original);
         } else{
+          Provider.of<Data>(context, listen: false).addAttractionToFireBase(request.updatedAttraction);
           Provider.of<Data>(context, listen: false).addAttraction(request.updatedAttraction);
         }
         Provider.of<Data>(context, listen: false).deleteRequest(request);

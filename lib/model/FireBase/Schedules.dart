@@ -24,7 +24,7 @@ Future<void> loadScheduleDayFromFireBase(FirebaseFirestore firebaseFirestore,
             hour: activity["hour"],
             attractionName: activity["attractionName"],
             imageSrc: activity["imageSrc"],
-            address: activity["location"],
+            address: "",
             isNeedToBuyTicketsInAdvance: activity["needTickets"],
             duration: TimeOfDayExtension.timeFromStr(activity["duration"]),
         );
@@ -37,7 +37,7 @@ Future<void> loadScheduleDayFromFireBase(FirebaseFirestore firebaseFirestore,
             hour: activity["hour"],
             attractionName: activity["attractionName"],
             imageSrc: activity["imageSrc"],
-            address: activity["location"],
+            address: activity["address"],
             isNeedToBuyTicketsInAdvance: activity["needTickets"],
             duration: TimeOfDayExtension.timeFromStr(activity["duration"]),
             latLngLocation: Coordinates(latitude, longitude)
@@ -98,11 +98,15 @@ Future<bool> uploadScheduleDayToFireBase(FirebaseFirestore firebaseFirestore,
     List<Map<String, String>> activities = [];
     for (Activity activity in activitiesSchedule) {
       if (activity.attractionName =="Free time"){
+        String location = null;
+        if (activity.latLngLocation != null){
+          location = "${activity.latLngLocation.latitude.toString()},${activity.latLngLocation.longitude}";
+        }
         activities.add({
           "attractionName": activity.attractionName,
           "imageSrc": activity.imageSrc,
           "hour": activity.hour,
-          "location": activity.address,
+          "location": location,
           "needTickets": activity.isNeedToBuyTicketsInAdvance,
           "duration": activity.duration.str(),
         });
@@ -111,7 +115,8 @@ Future<bool> uploadScheduleDayToFireBase(FirebaseFirestore firebaseFirestore,
           "attractionName": activity.attractionName,
           "imageSrc": activity.imageSrc,
           "hour": activity.hour,
-          "location": activity.address,
+          "location": "${activity.latLngLocation.latitude.toString()},${activity.latLngLocation.longitude}",
+          "address": activity.address,
           "needTickets": activity.isNeedToBuyTicketsInAdvance,
           "duration": activity.duration.str(),
           "location": "${activity.latLngLocation.latitude.toString()},${activity.latLngLocation.longitude}"

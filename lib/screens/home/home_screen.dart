@@ -28,27 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getCurrentUser();
     partOfDay = convertHourToPartOfDay(DateTime.now().hour);
-    //waitToLatLng();
-    load();
   }
 
   void waitToLatLng() async {
     List<Attraction> l = Provider.of<Data>(context, listen: false).attractions;
     await setAttractionsFirstLocationCoordinatesFromAddresses(l);
-  }
-
-  void load() async {
-    //List<Attraction> arr = await FireBaseSingleton().loadAttractions();
-    //Provider.of<Data>(context, listen: false).setAttractions(arr);
-    //List<Attraction> l = Provider.of<Data>(context, listen: false).attractions;
-    //FireBaseSingleton().loadRequests(context);
-    //FireBaseSingleton().loadCart(context, '1');
-    //FireBaseSingleton().loadTodoListFromFireBase(context, '1');
-    //FireBaseSingleton().loadTrips(context, ['2']);
-    //FireBaseSingleton().loadNotificationFromFireBase(context, '1');
-    //FireBaseSingleton().loadScheduleFromFireBase(context, '2');
-    //FireBaseSingleton().loadUser("yael11072@gmail.com", context);
-    //await setAttractionsFirstLocationCoordinatesFromAddresses(l);
   }
 
   void getCurrentUser() {

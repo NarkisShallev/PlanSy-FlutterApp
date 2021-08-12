@@ -4,7 +4,7 @@ import 'package:plansy_flutter_app/model/algorithm/algorithm_utilities.dart';
 
 class Attraction {
   // existing = 0, new = 1, updated = 2
-  final int status;
+  int status;
   int priority;
 
   final String name;
@@ -64,6 +64,8 @@ class Attraction {
   String getID() {
     return _id;
   }
+
+  void setStatus(int s) => this.status = s;
 
   void setLatLngLocation(Coordinates coordinates) => this.latLngLocation = coordinates;
 
