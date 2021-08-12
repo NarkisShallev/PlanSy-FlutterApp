@@ -112,7 +112,7 @@ class _CreateAttractionScreen1State extends State<CreateAttractionScreen1> {
             setLatLngLocation: (newValue) => setState(() => latLngLocation = newValue),
             setAddress: (newValue) async {
               setState(() => address = newValue);
-              country = await findCountryFromAddress(address);
+              setState(() async => country = await findCountryFromAddress(address));
             },
             isEnabled: true,
             labelText: "* Address",

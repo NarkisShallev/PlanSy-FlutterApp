@@ -24,7 +24,7 @@ class _AttractionListState extends State<AttractionList> {
         final attraction = widget.filteredAttrs[index];
         return buildAttractionCardInstance(attraction, context, index);
       },
-      itemCount: widget.filteredAttrs.length,
+      itemCount: widget.filteredAttrs == null ? 0 : widget.filteredAttrs.length,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
         crossAxisSpacing: getProportionateScreenWidth(5),

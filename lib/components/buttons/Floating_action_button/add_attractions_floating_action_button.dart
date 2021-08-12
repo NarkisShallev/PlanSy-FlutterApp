@@ -16,7 +16,6 @@ class AddAttractionsFloatingActionButton extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => BrowseScreen(
-            tripIndex: tripIndex,
             isAdmin: false,
           ),
         ),

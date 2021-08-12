@@ -14,10 +14,9 @@ import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 class BrowseScreen extends StatefulWidget {
-  final int tripIndex;
   final bool isAdmin;
 
-  const BrowseScreen({this.tripIndex, @required this.isAdmin});
+  const BrowseScreen({@required this.isAdmin});
 
   @override
   _BrowseScreenState createState() => _BrowseScreenState();
@@ -25,26 +24,31 @@ class BrowseScreen extends StatefulWidget {
 
 class _BrowseScreenState extends State<BrowseScreen> {
   List<Attraction> filteredAttrs;
-  Trip trip;
+  int tripIndex;
   String tripCountryInGoogleMaps;
 
   void initState() {
     super.initState();
-    trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
-    // setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
+    tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
     filterByTripCountry();
   }
 
   void filterByTripCountry() async {
     await convertToGoogleMapsCountry();
-    setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
-        .attractions
-        .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
-        .toList());
+    if (widget.isAdmin) {
+      setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
+    } else {
+      setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
+          .attractions
+          .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
+          .toList());
+    }
   }
 
-  Future<void> convertToGoogleMapsCountry() async =>
-      tripCountryInGoogleMaps = await findCountryFromAddress(trip.country);
+  Future<void> convertToGoogleMapsCountry() async {
+    Trip trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
+    return tripCountryInGoogleMaps = await findCountryFromAddress(trip.country);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +77,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
             height: SizeConfig.screenHeight,
             child: widget.isAdmin
                 ? AdminAttractionList(filteredAttrs: filteredAttrs)
-                : AttractionList(tripIndex: widget.tripIndex, filteredAttrs: filteredAttrs),
+                : AttractionList(tripIndex: tripIndex, filteredAttrs: filteredAttrs),
           ),
         ),
       ],
@@ -102,7 +106,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
         isBrowse: true,
         isWishList: false,
         isCart: false,
-        tripIndex: widget.tripIndex,
+        tripIndex: tripIndex,
       ),
     );
   }
