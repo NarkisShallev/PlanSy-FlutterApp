@@ -34,10 +34,10 @@ class _BrowseScreenState extends State<BrowseScreen> {
   }
 
   void filterByTripCountry() async {
-    await convertToGoogleMapsCountry();
     if (widget.isAdmin) {
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false).attractions);
     } else {
+      await convertToGoogleMapsCountry();
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
           .attractions
           .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
