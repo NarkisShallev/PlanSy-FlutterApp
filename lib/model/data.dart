@@ -398,7 +398,9 @@ class Data extends ChangeNotifier {
     if (notificationsCount != 0) {
       isNotificationsEmpty = false;
     }
-    isNewNotificationAdded = true;
+    if(newNotification.isNew == true){
+      isNewNotificationAdded = true;
+    }
     notifyListeners();
   }
 

@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import '../data.dart';
 import '../my_notification.dart';
 
-Future<void> loadNotificationFromFireBase(FirebaseFirestore firebaseFirestore,
-    BuildContext context, String notificationId) async {
+Future<void> loadNotificationFromFireBase(
+    FirebaseFirestore firebaseFirestore, BuildContext context, String notificationId) async {
   var doc = await firebaseFirestore.collection('Notifications').doc(notificationId).get();
   if (!doc.exists) {
     print('No such document!');
   } else {
     bool dataIsNew;
-    if (doc.data()["isNew"] == "false"){
+    if (doc.data()["isNew"] == "false") {
       dataIsNew = false;
     } else {
       dataIsNew = true;
@@ -24,11 +24,13 @@ Future<void> loadNotificationFromFireBase(FirebaseFirestore firebaseFirestore,
     MyNotification(isNew: isNew, now: now, sender: sender, title: title, receiver: null);
     Provider.of<Data>(context, listen: false).addNotification(
         newNotification);
+        MyNotification(isNew: isNew, now: now, sender: sender, title: title);
+    Provider.of<Data>(context, listen: false).addNotification(newNotification);
   }
 }
 
-Future<bool> uploadNotificationToFireBase(FirebaseFirestore firebaseFirestore,
-    MyNotification notification) async {
+Future<bool> uploadNotificationToFireBase(
+    FirebaseFirestore firebaseFirestore, MyNotification notification) async {
   try {
     // get firebase collection and id field.
     var idDoc = await firebaseFirestore.collection('Notifications').doc('id').get();
@@ -47,15 +49,17 @@ Future<bool> uploadNotificationToFireBase(FirebaseFirestore firebaseFirestore,
         .doc('id')
         .set({'counter': (int.parse(id) + 1).toString()});
 
-
     var userDoc = await firebaseFirestore.collection('Users').doc(notification.receiver).get();
     List<dynamic> notifications = userDoc.data()["notifications"];
     List<String> ids = [];
-    for (var n in notifications){
+    for (var n in notifications) {
       ids.add(n.toString());
     }
     ids.add(id);
-    await firebaseFirestore.collection('Users').doc(notification.receiver).update({"notifications": ids});
+    await firebaseFirestore
+        .collection('Users')
+        .doc(notification.receiver)
+        .update({"notifications": ids});
     // 1 if succeeded 0 other.
     return true;
   } on FirebaseException catch (fException) {
@@ -69,9 +73,9 @@ Future<bool> uploadNotificationToFireBase(FirebaseFirestore firebaseFirestore,
   }
 }
 
-void updateNotificationStatusInFireBase(FirebaseFirestore firebaseFirestore,
-    List<String> notificationsIds) async {
-  for (String id in notificationsIds){
+void updateNotificationStatusInFireBase(
+    FirebaseFirestore firebaseFirestore, List<String> notificationsIds) async {
+  for (String id in notificationsIds) {
     await firebaseFirestore.collection("Notifications").doc(id).update({"isNew": "false"});
   }
 }
