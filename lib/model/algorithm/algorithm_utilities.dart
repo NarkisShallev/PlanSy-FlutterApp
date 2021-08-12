@@ -156,6 +156,7 @@ int calculateTripScore(List<ScheduledAttraction> trip) {
 }
 
 TimeOfDay calculateDistance(Attraction a, Attraction b) {
+  print("${a.latLngLocation}");
   double distance = getDistanceInKm(a.latLngLocation, b.latLngLocation);
   return kmToTime(distance);
 }

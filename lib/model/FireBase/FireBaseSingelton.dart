@@ -93,9 +93,9 @@ class FireBaseSingleton {
     }
   }
 
-  void removeAttractionFromFireBase(String id) async {
+  void removeAttractionFromFireBase(String id, BuildContext context) async {
     try {
-      await Attractions.removeAttractionFromFireBase(_firebaseFirestore, id);
+      await Attractions.removeAttractionFromFireBase(_firebaseFirestore, id, context);
     } catch (error) {
       print("ATTRACTIONS LOADING ERROR: ${error.toString()}");
     }

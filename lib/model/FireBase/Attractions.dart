@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:plansy_flutter_app/model/FireBase/FireBaseSingelton.dart';
 import 'package:plansy_flutter_app/model/algorithm/algorithm_utilities.dart';
 import 'package:provider/provider.dart';
 
@@ -174,6 +175,12 @@ Future<void> changeAttraction(FirebaseFirestore firebaseFirestore, String id, Ma
   attrRef.update(changes);
 }
 
-Future<void> removeAttractionFromFireBase(FirebaseFirestore firebaseFirestore, String id) async {
+Future<void> removeAttractionFromFireBase(FirebaseFirestore firebaseFirestore, String id,
+    BuildContext context) async {
+  var trips = await firebaseFirestore.collection('Trips').get();
+  for (var trip in trips.docs){
+    FireBaseSingleton().deleteFromCart(context, trip.id, id);
+    FireBaseSingleton().deleteFromWishlist(context, trip.id, id);
+  }
   var attrRef = await firebaseFirestore.collection('Attractions').doc(id).delete();
 }

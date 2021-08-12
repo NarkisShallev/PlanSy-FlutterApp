@@ -137,8 +137,8 @@ class Data extends ChangeNotifier {
     FireBaseSingleton().addAttraction(attraction);
   }
 
-  void deleteAttractionFromFireBase(Attraction attraction) {
-    FireBaseSingleton().removeAttractionFromFireBase(attraction.getID());
+  void deleteAttractionFromFireBase(Attraction attraction, BuildContext context) {
+    FireBaseSingleton().removeAttractionFromFireBase(attraction.getID(), context);
   }
 
   void ApproveUpdateAttractionInFireBase(Request request, Attraction original) {
@@ -227,8 +227,8 @@ class Data extends ChangeNotifier {
     return _requests.length;
   }
 
-  void deleteRequest(Request request) {
-    FireBaseSingleton().removeAttractionFromFireBase(request.updatedAttraction.getID());
+  void deleteRequest(Request request, BuildContext context) {
+    FireBaseSingleton().removeAttractionFromFireBase(request.updatedAttraction.getID(), context);
     FireBaseSingleton().deleteRequestFromFireBase(request.getId());
     _requests.remove(request);
     if (requestsCount == 0) {

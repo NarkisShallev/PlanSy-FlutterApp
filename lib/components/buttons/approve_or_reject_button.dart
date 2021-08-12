@@ -42,7 +42,7 @@ class ApproveOrRejectButton extends StatelessWidget {
           Provider.of<Data>(context, listen: false).addAttractionToFireBase(request.updatedAttraction);
           Provider.of<Data>(context, listen: false).addAttraction(request.updatedAttraction);
         }
-        Provider.of<Data>(context, listen: false).deleteRequest(request);
+        Provider.of<Data>(context, listen: false).deleteRequest(request, context);
 
         MyNotification notification = createApproveNotification();
         Provider.of<Data>(context, listen: false).addNotificationToFireBase(notification);
@@ -70,7 +70,7 @@ class ApproveOrRejectButton extends StatelessWidget {
       child: DefaultButton(
         text: "Reject",
         press: () {
-          Provider.of<Data>(context, listen: false).deleteRequest(request);
+          Provider.of<Data>(context, listen: false).deleteRequest(request, context);
           MyNotification notification = createRejectNotification();
           Provider.of<Data>(context, listen: false).addNotificationToFireBase(notification);
           Navigator.pop(context);

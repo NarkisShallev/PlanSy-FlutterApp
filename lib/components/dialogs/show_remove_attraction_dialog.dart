@@ -22,7 +22,7 @@ Future<void> showRemoveAttractionDialog(
             child: Text('Yes'),
             onPressed: () {
               if (attraction!=null){
-                Provider.of<Data>(context, listen: false).deleteAttractionFromFireBase(attraction);
+                Provider.of<Data>(context, listen: false).deleteAttractionFromFireBase(attraction, context);
               }
               removeFromListCallback();
               Navigator.of(context).pop();
