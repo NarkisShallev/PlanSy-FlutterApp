@@ -106,7 +106,7 @@ class Data extends ChangeNotifier {
 
   Attraction getAttractionByID(String id) {
     for (int i = 0; i < _attractions.length; i++) {
-      if (_attractions[i].getID() == id) {
+      if (_attractions[i].getID().compareTo(id) == 0) {
         return _attractions[i];
       }
     }
