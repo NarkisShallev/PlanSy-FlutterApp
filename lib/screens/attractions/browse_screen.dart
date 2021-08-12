@@ -38,10 +38,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
       await convertToGoogleMapsCountry();
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
           .attractions
-          .where((attr) {
-            print(attr.name + " " + attr.country);
-            return (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase());
-          })
+          .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
           .toList());
     }
   }
@@ -124,6 +121,8 @@ class _BrowseScreenState extends State<BrowseScreen> {
   void filterByName(value) =>
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
           .attractions
-          .where((attr) => attr.name.toLowerCase().contains(value.toString().toLowerCase()))
+          .where((attr) =>
+              attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase() &&
+              attr.name.toLowerCase().contains(value.toString().toLowerCase()))
           .toList());
 }

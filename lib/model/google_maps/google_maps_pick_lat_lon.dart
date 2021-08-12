@@ -94,13 +94,13 @@ class _GoogleMaps extends State<GoogleMapsPickLatLon> {
         }
         selectedMarker = markerId;
         final Marker newMarker = tappedMarker.copyWith(
-          iconParam: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueCyan,
-          ),
+          iconParam: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
         );
         markers[markerId] = newMarker;
 
         updateVars(markerId);
+
+        Navigator.of(context).pop();
       });
     }
   }
