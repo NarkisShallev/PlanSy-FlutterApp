@@ -11,14 +11,12 @@ class PrimaryBottomNavigationBar extends StatelessWidget {
   final bool isBrowse;
   final bool isWishList;
   final bool isCart;
-  final int tripIndex;
 
   PrimaryBottomNavigationBar({
     @required this.isHome,
     this.isBrowse,
     @required this.isWishList,
     @required this.isCart,
-    this.tripIndex,
   });
 
   @override
@@ -51,7 +49,7 @@ class PrimaryBottomNavigationBar extends StatelessWidget {
       children: [
         homeIconButton(context, isHome),
         browseIconButton(context, isBrowse),
-        cartIconButton(context, isCart, tripIndex),
+        cartIconButton(context, isCart),
         wishListIconButton(context, isWishList),
       ],
     );

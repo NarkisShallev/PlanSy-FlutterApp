@@ -10,6 +10,7 @@ import 'package:plansy_flutter_app/model/request.dart';
 import 'dart:collection';
 import 'package:plansy_flutter_app/model/task.dart';
 import 'package:plansy_flutter_app/model/trip.dart';
+import 'package:provider/provider.dart';
 import 'FireBase/FireBaseSingelton.dart';
 
 class Data extends ChangeNotifier {
@@ -196,12 +197,12 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTrip(int index, Trip updatedTrip) {
-    Map<String, String> changes = _trips[index].createMapChanges(updatedTrip);
-    FireBaseSingleton().updateTrip(_trips[index].getID().toString(), changes);
+  void updateTrip(Trip updatedTrip) {
+    Map<String, String> changes = _trips[tripIndex].createMapChanges(updatedTrip);
+    FireBaseSingleton().updateTrip(_trips[tripIndex].getID().toString(), changes);
 
-    deleteTripWithoutUpdateFireBase(trips[index]);
-    trips.insert(index, updatedTrip);
+    deleteTripWithoutUpdateFireBase(trips[tripIndex]);
+    trips.insert(tripIndex, updatedTrip);
   }
 
   //************************************************************************

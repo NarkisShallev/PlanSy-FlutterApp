@@ -5,10 +5,9 @@ import 'package:plansy_flutter_app/screens/attractions/attraction_details_screen
 import 'package:plansy_flutter_app/utilities/size_config.dart';
 
 class AttractionList extends StatefulWidget {
-  final int tripIndex;
   final List<Attraction> filteredAttrs;
 
-  AttractionList({this.tripIndex, this.filteredAttrs});
+  AttractionList({this.filteredAttrs});
 
   @override
   _AttractionListState createState() => _AttractionListState();

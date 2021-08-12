@@ -13,9 +13,11 @@ import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 Future<void> showAddFreeTimeDialog(
-    BuildContext context, int tripIndex, TabController tabController) async {
+    BuildContext context, TabController tabController) async {
   TimeOfDay startingHour = TimeOfDay(hour: 0, minute: 0);
   TimeOfDay duration = TimeOfDay(hour: 0, minute: 0);
+
+  int tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
 
   Trip trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
   DateTime firstTripDate = trip.getFirstDateInDateTimeFormat();
@@ -61,7 +63,7 @@ Future<void> showAddFreeTimeDialog(
               planTrip(List<Attraction>.from(cart), context, trip);
               Navigator.of(context).pop();
               Navigator.of(context).pop();
-              moveToScheduleScreen(context, tripIndex);
+              moveToScheduleScreen(context);
             },
           ),
         ],
@@ -70,8 +72,8 @@ Future<void> showAddFreeTimeDialog(
   );
 }
 
-void moveToScheduleScreen(BuildContext context, int tripIndex) => Navigator.push(
-    context, MaterialPageRoute(builder: (context) => ScheduleScreen(tripIndex: tripIndex)));
+void moveToScheduleScreen(BuildContext context) => Navigator.push(
+    context, MaterialPageRoute(builder: (context) => ScheduleScreen()));
 
 Text buildTitle(DateTime currentTripDate) => Text(
     'Pick start hour and duration for free time in ${DateFormat('MM/dd/yyyy').format(currentTripDate)}:',

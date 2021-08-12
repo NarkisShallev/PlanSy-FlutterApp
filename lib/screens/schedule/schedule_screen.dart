@@ -11,9 +11,6 @@ import 'package:share/share.dart';
 
 class ScheduleScreen extends StatefulWidget {
   final ScreenshotController screenshotController = ScreenshotController();
-  final int tripIndex;
-
-  ScheduleScreen({this.tripIndex});
 
   @override
   _ScheduleScreenState createState() => _ScheduleScreenState();
@@ -28,7 +25,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> with TickerProviderStat
   @override
   void initState() {
     super.initState();
-    trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
+    int tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
+    trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
     _tabs = getTabs(
         trip.getLastDateInDateTimeFormat().difference(trip.getFirstDateInDateTimeFormat()).inDays +
             1);
@@ -95,11 +93,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> with TickerProviderStat
     _generalWidgets.clear();
     for (int i = 0; i < _tabs.length; i++) {
       _generalWidgets.add(
-        Timeline(
-          tripIndex: widget.tripIndex,
-          dayNum: i,
-          tabController: _tabController,
-        ),
+        Timeline(dayNum: i, tabController: _tabController),
       );
     }
     return _generalWidgets;

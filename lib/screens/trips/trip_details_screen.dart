@@ -22,10 +22,6 @@ import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 class TripDetailsScreen extends StatefulWidget {
-  final int tripIndex;
-
-  const TripDetailsScreen({@required this.tripIndex});
-
   @override
   _TripDetailsScreenState createState() => _TripDetailsScreenState();
 }
@@ -66,7 +62,8 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
   }
 
   void initVars() {
-    trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
+    int tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
+    trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
     defaultCountry = findDefaultCountry(country);
     _countryController.text = trip.country;
     _stateController.text = trip.state;
@@ -153,7 +150,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
       qualityOrAmount: qualityOrAmount,
       latLngLocation: latLngLocation,
     );
-    Provider.of<Data>(context, listen: false).updateTrip(widget.tripIndex, updatedTrip);
+    Provider.of<Data>(context, listen: false).updateTrip(updatedTrip);
   }
 
   bool isSomethingWrong() {

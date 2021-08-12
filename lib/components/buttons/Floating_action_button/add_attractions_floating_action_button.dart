@@ -4,10 +4,6 @@ import 'package:plansy_flutter_app/screens/attractions/browse_screen.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
 
 class AddAttractionsFloatingActionButton extends StatelessWidget {
-  final int tripIndex;
-
-  const AddAttractionsFloatingActionButton({this.tripIndex});
-
   @override
   Widget build(BuildContext context) {
     return DraggablePositionedFloatingActionButton(

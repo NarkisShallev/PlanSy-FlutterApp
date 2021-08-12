@@ -40,8 +40,8 @@ class _CartListState extends State<CartList> {
     return RowAttractionCard(
       attraction: attraction,
       onTap: () => moveToAttractionDetailsScreen(index, attraction),
-      removeFromListCallback: () =>
-          Provider.of<Data>(context, listen: false).deleteAttractionFromCart(attraction, context, trip.getID()),
+      removeFromListCallback: () => Provider.of<Data>(context, listen: false)
+          .deleteAttractionFromCart(attraction, context, trip.getID()),
       isRemoveButtonVisible: true,
       isAdmin: false,
       isCart: true,
@@ -56,7 +56,8 @@ class _CartListState extends State<CartList> {
             isAddToCartButtonVisible: false,
             isAdmin: false,
             isApproveOrRejectButtonVisible: false,
-            attraction: attraction, isFavorite: true,
+            attraction: attraction,
+            isFavorite: true,
           ),
         ),
       );

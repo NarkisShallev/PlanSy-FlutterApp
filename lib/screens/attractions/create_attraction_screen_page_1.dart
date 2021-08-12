@@ -112,7 +112,7 @@ class _CreateAttractionScreen1State extends State<CreateAttractionScreen1> {
             setLatLngLocation: (newValue) => setState(() => latLngLocation = newValue),
             setAddress: (newValue) async {
               setState(() => address = newValue);
-              setState(() async => country = await findCountryFromAddress(address));
+              await setCountry();
             },
             isEnabled: true,
             labelText: "* Address",
@@ -126,6 +126,10 @@ class _CreateAttractionScreen1State extends State<CreateAttractionScreen1> {
         ],
       ),
     );
+  }
+
+  Future<void> setCountry() async {
+    return country = await findCountryFromAddress(address);
   }
 
   Row buildNextButton({Function onPressed}) {
@@ -171,4 +175,6 @@ class _CreateAttractionScreen1State extends State<CreateAttractionScreen1> {
           ),
         ),
       );
+
+
 }

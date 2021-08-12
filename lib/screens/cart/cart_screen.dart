@@ -14,10 +14,6 @@ import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
-  final int tripIndex;
-
-  const CartScreen({this.tripIndex});
-
   @override
   _CartScreenState createState() => _CartScreenState();
 }
@@ -62,7 +58,6 @@ class _CartScreenState extends State<CartScreen> {
       isBrowse: false,
       isWishList: false,
       isCart: true,
-      tripIndex: widget.tripIndex,
     );
   }
 
@@ -104,7 +99,8 @@ class _CartScreenState extends State<CartScreen> {
       );
 
   Padding buildCreateARouteButton(BuildContext context) {
-    Trip trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
+    int tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
+    Trip trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
     List<Attraction> cart = Provider.of<Data>(context, listen: false).cart;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(25)),
@@ -120,5 +116,5 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void moveToScheduleScreen() => Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ScheduleScreen(tripIndex: widget.tripIndex)));
+      MaterialPageRoute(builder: (context) => ScheduleScreen()));
 }

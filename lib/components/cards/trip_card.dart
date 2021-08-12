@@ -125,7 +125,7 @@ class _TripCardState extends State<TripCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TripDetailsScreen(tripIndex: widget.tripIndex),
+              builder: (context) => TripDetailsScreen(),
             ),
           );
         },
@@ -150,7 +150,7 @@ class _TripCardState extends State<TripCard> {
   DropdownMenuItem<int> buildScheduleDropdownMenuItem() {
     return DropdownMenuItem(
       child: TextButton(
-          onPressed: () async{
+          onPressed: () async {
             // set trip index and schedule.
             Provider.of<Data>(context, listen: false).setTripIndex(widget.tripIndex);
             Trip trip = Provider.of<Data>(context, listen: false).trips[widget.tripIndex];
@@ -165,9 +165,7 @@ class _TripCardState extends State<TripCard> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ScheduleScreen(
-                  tripIndex: widget.tripIndex,
-                ),
+                builder: (context) => ScheduleScreen(),
               ),
             );
           },

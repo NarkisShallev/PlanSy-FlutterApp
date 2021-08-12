@@ -3,10 +3,10 @@ import 'package:icon_shadow/icon_shadow.dart';
 import 'package:plansy_flutter_app/screens/cart/cart_screen.dart';
 import 'package:plansy_flutter_app/utilities/constants.dart';
 
-IconButton cartIconButton(BuildContext context, bool isCart, int tripIndex) {
+IconButton cartIconButton(BuildContext context, bool isCart) {
   return IconButton(
     icon: isCart ? buildMarkedIcon() : Icon(Icons.map),
-    onPressed: () => goToCartIfNotThere(isCart, context, tripIndex),
+    onPressed: () => goToCartIfNotThere(isCart, context),
     color: kSecondaryColor,
   );
 }
@@ -18,11 +18,11 @@ IconShadowWidget buildMarkedIcon() {
   );
 }
 
-void goToCartIfNotThere(bool isCart, BuildContext context, int tripIndex) {
+void goToCartIfNotThere(bool isCart, BuildContext context) {
   if (!isCart) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CartScreen(tripIndex: tripIndex)),
+      MaterialPageRoute(builder: (context) => CartScreen()),
     );
   }
 }

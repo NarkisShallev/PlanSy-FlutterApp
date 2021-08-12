@@ -10,11 +10,10 @@ import 'package:plansy_flutter_app/utilities/size_config.dart';
 import 'package:provider/provider.dart';
 
 class Timeline extends StatelessWidget {
-  final int tripIndex;
   final int dayNum;
   final TabController tabController;
 
-  const Timeline({this.tripIndex, this.dayNum, this.tabController});
+  const Timeline({this.dayNum, this.tabController});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +28,8 @@ class Timeline extends StatelessWidget {
             child: buildTimelineContent(activitiesCount, activities),
           ),
         ),
-        AddAttractionsFloatingActionButton(tripIndex: tripIndex),
-        AddFreeTimeFloatingActionButton(tripIndex: tripIndex, tabController: tabController),
+        AddAttractionsFloatingActionButton(),
+        AddFreeTimeFloatingActionButton(tabController: tabController),
       ],
     );
   }

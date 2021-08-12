@@ -24,12 +24,10 @@ class BrowseScreen extends StatefulWidget {
 
 class _BrowseScreenState extends State<BrowseScreen> {
   List<Attraction> filteredAttrs;
-  int tripIndex;
   String tripCountryInGoogleMaps;
 
   void initState() {
     super.initState();
-    tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
     filterByTripCountry();
   }
 
@@ -40,12 +38,16 @@ class _BrowseScreenState extends State<BrowseScreen> {
       await convertToGoogleMapsCountry();
       setState(() => filteredAttrs = Provider.of<Data>(context, listen: false)
           .attractions
-          .where((attr) => (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase()))
+          .where((attr) {
+            print(attr.name + " " + attr.country);
+            return (attr.country.toLowerCase() == tripCountryInGoogleMaps.toLowerCase());
+          })
           .toList());
     }
   }
 
   Future<void> convertToGoogleMapsCountry() async {
+    int tripIndex = Provider.of<Data>(context, listen: false).tripIndex;
     Trip trip = Provider.of<Data>(context, listen: false).trips[tripIndex];
     return tripCountryInGoogleMaps = await findCountryFromAddress(trip.country);
   }
@@ -77,7 +79,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
             height: SizeConfig.screenHeight,
             child: widget.isAdmin
                 ? AdminAttractionList(filteredAttrs: filteredAttrs)
-                : AttractionList(tripIndex: tripIndex, filteredAttrs: filteredAttrs),
+                : AttractionList(filteredAttrs: filteredAttrs),
           ),
         ),
       ],
@@ -106,7 +108,6 @@ class _BrowseScreenState extends State<BrowseScreen> {
         isBrowse: true,
         isWishList: false,
         isCart: false,
-        tripIndex: tripIndex,
       ),
     );
   }
