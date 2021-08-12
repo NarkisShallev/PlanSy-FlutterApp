@@ -12,7 +12,7 @@ class Attraction {
   final String category;
   final String address;
   Coordinates latLngLocation;
-  final String country; //TODO: update
+  final String country;
   final String description;
 
   // format: '08:00-17:00'
