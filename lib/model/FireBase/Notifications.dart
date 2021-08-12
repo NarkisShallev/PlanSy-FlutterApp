@@ -10,7 +10,13 @@ Future<void> loadNotificationFromFireBase(FirebaseFirestore firebaseFirestore,
   if (!doc.exists) {
     print('No such document!');
   } else {
-    bool isNew = doc.data()["isNew"];
+    bool dataIsNew;
+    if (doc.data()["isNew"] == "false"){
+      dataIsNew = false;
+    } else {
+      dataIsNew = true;
+    }
+    bool isNew = dataIsNew;
     String now = doc.data()["now"];
     String sender = doc.data()["sender"];
     String title = doc.data()["title"];
@@ -60,5 +66,12 @@ Future<bool> uploadNotificationToFireBase(FirebaseFirestore firebaseFirestore,
     // executed for errors of all types other than Exception
     print(error.toString());
     return false;
+  }
+}
+
+void updateNotificationStatusInFireBase(FirebaseFirestore firebaseFirestore,
+    List<String> notificationsIds) async {
+  for (String id in notificationsIds){
+    await firebaseFirestore.collection("Notifications").doc(id).update({"isNew": "false"});
   }
 }

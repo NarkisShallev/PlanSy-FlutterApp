@@ -248,7 +248,19 @@ class FireBaseSingleton {
   }
 
   Future<bool> uploadNotification(MyNotification notification) async {
-    await uploadNotificationToFireBase(_firebaseFirestore, notification);
+    try {
+      await uploadNotificationToFireBase(_firebaseFirestore, notification);
+    } catch (error) {
+      print("NOTIFICATION UPLOADING ERROR: ${error.toString()}");
+    }
+  }
+
+  void updateNotificationStatus(List<String> notificationsIds) async {
+    try {
+      await updateNotificationStatusInFireBase(_firebaseFirestore, notificationsIds);
+    } catch (error) {
+      print("NOTIFICATION UPDATE ERROR: ${error.toString()}");
+    }
   }
 
   // todolists

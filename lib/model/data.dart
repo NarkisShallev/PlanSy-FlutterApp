@@ -412,6 +412,14 @@ class Data extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<String> _notificationsIds = [];
+
+  void setNotificationsIds(List<String> ids){
+    _notificationsIds = ids;
+  }
+
+  List<String> get notificationsIds => _notificationsIds;
+
 //************************************************************************
 
   // route list

@@ -21,7 +21,9 @@ Future<void> showRemoveAttractionDialog(
           TextButton(
             child: Text('Yes'),
             onPressed: () {
-              Provider.of<Data>(context, listen: false).deleteAttractionFromFireBase(attraction);
+              if (attraction!=null){
+                Provider.of<Data>(context, listen: false).deleteAttractionFromFireBase(attraction);
+              }
               removeFromListCallback();
               Navigator.of(context).pop();
             },

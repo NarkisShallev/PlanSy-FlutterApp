@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plansy_flutter_app/components/appBar/my_appBar.dart';
+import 'package:plansy_flutter_app/model/FireBase/FireBaseSingelton.dart';
 import 'package:plansy_flutter_app/model/data.dart';
 import 'package:plansy_flutter_app/screens/notification/notification_list.dart';
 import 'package:plansy_flutter_app/utilities/size_config.dart';
@@ -12,6 +13,13 @@ class NotificationsScreen extends StatefulWidget {
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
   bool isEmpty;
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    List<String> ids = Provider.of<Data>(context, listen: false).notificationsIds;
+    FireBaseSingleton().updateNotificationStatus(ids);
+  }
 
   @override
   Widget build(BuildContext context) {

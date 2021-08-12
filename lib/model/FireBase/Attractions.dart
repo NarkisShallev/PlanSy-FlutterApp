@@ -33,7 +33,7 @@ Future<String> addAttractionToFireBase(FirebaseFirestore firebaseFirestore, Attr
       'Rating': att.rating,
       'SuitableWeather': att.suitableSeason,
       'Duration': TimeOfDayExtension(att.duration).str(),
-      'Priority': att.priority,
+      'Priority': att.priority.toInt(),
       "Latlnglocation": "${att.latLngLocation.latitude.toString()},${att.latLngLocation.longitude}",
     });
     att.setID(id);

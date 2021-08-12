@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:plansy_flutter_app/model/FireBase/FireBaseSingelton.dart';
+import 'package:provider/provider.dart';
 import '../attraction.dart';
+import '../data.dart';
 
 Future<void> loadUser(FirebaseFirestore firebaseFirestore, String email, BuildContext context) async {
   //load attractions
@@ -12,6 +14,7 @@ Future<void> loadUser(FirebaseFirestore firebaseFirestore, String email, BuildCo
   for (var notificationId in notificationIds) {
     await FireBaseSingleton().loadNotification(context, notificationId.toString());
   }
+  Provider.of<Data>(context, listen: false).setNotificationsIds(List<String>.from(notificationIds));
   List<dynamic> tripIds = userRef.data()["trips"];
   await FireBaseSingleton().loadTrips(context, List<int>.from(tripIds));
 }
