@@ -2,3 +2,5 @@ The app provides a collaborative database of attractions around the world, allow
 
 
 <img src="https://user-images.githubusercontent.com/45766957/131857513-64c780da-5db5-4574-8226-34c2dcc503cb.jpeg" width="100">
+<img src="https://user-images.githubusercontent.com/45766957/131863976-5aa4ced8-0060-4b4b-abc4-f122c895bca0.jpeg" width="100">
+
