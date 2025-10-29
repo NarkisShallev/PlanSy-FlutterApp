@@ -3,12 +3,24 @@
 PlanSy is a Flutter mobile application designed to help users manage and plan their tasks efficiently.   
 The app provides an intuitive interface, smooth navigation, and essential task management features.
 
+## About
+PlanSy allows users to:
+- Explore attractions worldwide.
+- Create personalized trips collaboratively with friends or group members.
+- Automatically generate optimized travel routes.
+- Integrate maps and location data for precise navigation.
+- Save trips and share them with others.
+
+The app is built using Flutter and leverages Firebase for real-time database functionality, as well as Google Maps for location services.
+
 ## Features
-- Task creation, editing, and deletion
-- Task categorization and prioritization
-- Notifications and reminders
-- Clean and responsive UI built with Flutter
-- Cross-platform support (iOS & Android)
+- Discover attractions and points of interest globally.
+- Collaborative trip planning for groups.
+- Optimized route calculation.
+- Firebase integration for data storage and user management.
+- Google Maps integration for real-time location display.
+- User-friendly UI for easy navigation and planning.
+- Cross-platform support (Android & iOS).
 
 ## Screenshots
 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
@@ -25,10 +37,10 @@ The app provides an intuitive interface, smooth navigation, and essential task m
 ## Getting Started
 ### Prerequisites
 
-- Flutter SDK: [Install Flutter](https://flutter.dev/docs/get-started/install)
-- Dart SDK (comes with Flutter)
-- Android Studio / VS Code (recommended)
-- An emulator or a physical device for testing
+- Flutter SDK (version >= 3.0.0)
+- Android SDK / iOS SDK
+- Firebase project setup
+- Google Maps API key
 
 ### Installation
 
@@ -48,3 +60,17 @@ The app provides an intuitive interface, smooth navigation, and essential task m
    ```bash
    flutter run
    ```
+
+### Usage
+Once the app is running:
+1. Sign in or create a new account.
+2. Browse and select attractions to add to your trip.
+3. Collaborate with friends to adjust trip plans.
+4. Generate optimized routes automatically.
+5. Save and share your trip itinerary.
+
+### Architecture
+* Flutter / Dart: Core framework for cross-platform development.
+* Firebase: Realtime database, authentication, and data storage.
+* Google Maps SDK: Location services, map visualization, and route display.
+* Custom Algorithms: Route optimization for multiple attractions.
