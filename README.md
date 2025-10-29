@@ -67,7 +67,7 @@ Once the app is running:
 
 ---
 
-### Architecture
+### 🏗️ Architecture
 * Flutter / Dart: Core framework for cross-platform development.
 * Firebase: Realtime database, authentication, and data storage.
 * Google Maps SDK: Location services, map visualization, and route display.
@@ -77,5 +77,3 @@ Once the app is running:
 
 ## 👨‍💻 Author
 Developed by Narkis Shallev
-
-A simple yet effective tool for keeping your photo collections clean and duplicate-free.
