@@ -3,26 +3,20 @@
 PlanSy is a Flutter mobile application designed to help users manage and plan their tasks efficiently.   
 The app provides an intuitive interface, smooth navigation, and essential task management features.
 
-## About
-PlanSy allows users to:
+The app is built using Flutter and leverages Firebase for real-time database functionality, as well as Google Maps for location services.
+
+---
+
+## 🚀 Features
 - Explore attractions worldwide.
-- Create personalized trips collaboratively with friends or group members.
+- Create personalized trips.
 - Automatically generate optimized travel routes.
 - Integrate maps and location data for precise navigation.
 - Save trips and share them with others.
 
-The app is built using Flutter and leverages Firebase for real-time database functionality, as well as Google Maps for location services.
+---
 
-## Features
-- Discover attractions and points of interest globally.
-- Collaborative trip planning for groups.
-- Optimized route calculation.
-- Firebase integration for data storage and user management.
-- Google Maps integration for real-time location display.
-- User-friendly UI for easy navigation and planning.
-- Cross-platform support (Android & iOS).
-
-## Screenshots
+## 🖼️ Screenshots
 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
   <img src="https://user-images.githubusercontent.com/45766957/131857513-64c780da-5db5-4574-8226-34c2dcc503cb.jpeg" width="100">
   <img src="https://user-images.githubusercontent.com/45766957/131863976-5aa4ced8-0060-4b4b-abc4-f122c895bca0.jpeg" width="100">
@@ -34,15 +28,17 @@ The app is built using Flutter and leverages Firebase for real-time database fun
   <img src="https://user-images.githubusercontent.com/45766957/131864257-aba61e8a-a45e-42d1-be87-9ca24c40da48.jpeg" width="100">
 </div>
 
+---
+
 ## Getting Started
-### Prerequisites
+### 🧩 Prerequisites
 
 - Flutter SDK (version >= 3.0.0)
 - Android SDK / iOS SDK
 - Firebase project setup
 - Google Maps API key
 
-### Installation
+### 🛠️ Installation
 
 1. Clone the repository:
    ```bash
@@ -61,7 +57,7 @@ The app is built using Flutter and leverages Firebase for real-time database fun
    flutter run
    ```
 
-### Usage
+### 🗂️ Usage
 Once the app is running:
 1. Sign in or create a new account.
 2. Browse and select attractions to add to your trip.
@@ -69,8 +65,17 @@ Once the app is running:
 4. Generate optimized routes automatically.
 5. Save and share your trip itinerary.
 
+---
+
 ### Architecture
 * Flutter / Dart: Core framework for cross-platform development.
 * Firebase: Realtime database, authentication, and data storage.
 * Google Maps SDK: Location services, map visualization, and route display.
 * Custom Algorithms: Route optimization for multiple attractions.
+
+---
+
+## 👨‍💻 Author
+Developed by Narkis Shallev
+
+A simple yet effective tool for keeping your photo collections clean and duplicate-free.
